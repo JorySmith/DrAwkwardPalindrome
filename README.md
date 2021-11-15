@@ -1,8 +1,8 @@
-# Project Name - A Coding Project
-Exec summary. A website template for JS coding projects.
+# Dr. Awkward Palindrome - A Coding Project
+Exec summary. 
 
 # Live Demo
-https://jorysmith.github.io/CodeProjectTemplate/
+https://jorysmith.github.io/DrAwkwardPalindrome/
 
 # Description
 Description here.
