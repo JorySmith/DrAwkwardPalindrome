@@ -60,15 +60,74 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container py-4 px-5 mt-5">
-            <h2 class="code-title border-1 border-bottom border-dark">The Code - Dr. Awkward Palindrom</h2>
+            <h2 class="code-title border-1 border-bottom border-dark">The Code - Dr. Awkward Palindrome</h2>
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col-md-8">
                     <pre class="line-numbers">
                         <!-- NOTE: Prism doesn't handle template literals well -->
                         <code class="language-javascript">
-                            // Call Hello World
-                            function helloWorld() {
-                                alert("Hello World");
+                            // Get function
+                            // On app.html page, add event listener to Run Check button
+                            function userInputText() {
+                                // Ensure alertBox is invisble
+                                document.getElementById("alertBox").classList.add("invisible");
+                                // Get and store user's input string,
+                                let userInput = document.getElementById("userInput").value;    
+
+                                // Pass userInputArray to palindromeCheck to perform check
+                                let palindromeResults = palindromeCheck(userInput);
+
+                                // Display result to the webpage
+                                displayResults(palindromeResults);
+                            }
+
+                            // Logic function
+                            // Palindrome check
+                            // Reverse user's word or phrase, removing any spaces, see if it matches original input
+                            function palindromeCheck(userInput) {
+                                // First update userInput to be all lowercase letters
+                                userInput = userInput.toLowerCase();
+
+                                // Remove spaces and special characters with RegEx
+                                let regex = /[^a-z0-9]/gi;    
+                                userInput = userInput.replace(regex, "");
+
+                                // Reverse input with for loop
+                                let reversedInput = [];
+                                for (let i = userInput.length - 1; i >= 0; i--) {
+                                    reversedInput.push(userInput[i])        
+                                }
+
+                                // Join reversedInput into a combined string
+                                let revString = reversedInput.join('');
+                                
+                                // Palindrome check, store results in an object property
+                                let returnObject = {};
+                                returnObject.result = false;
+                                
+                                if(revString == userInput) {
+                                    returnObject.msg = "Yes, this is a palindrome!";
+                                    returnObject.result = true;
+                                } else {
+                                    returnObject.msg = "I'm sorry, this is not a palindrome.";
+                                    returnObject.result = false;
+                                }
+                                // Update a new object property, reversed, to be reversedInput
+                                returnObject.reversed = revString;
+
+                                return returnObject;
+                            }
+
+                            // Display function
+                            // If word is a palindrome, display success message, otherwise, display the fail message
+                            function displayResults(returnObject) {
+                                document.getElementById("alertHeader").innerHTML = returnObject.msg;
+                                document.getElementById("alertMsg").innerHTML = `Your phrase reversed is: &ltbr> ${returnObject.reversed}`;
+                                if (returnObject.result) {
+                                    document.getElementById("alertBox").classList.remove("alert-danger");
+                                    document.getElementById("alertBox").classList.add("alert-success");
+                                }
+                                document.getElementById("alertBox").classList.remove("invisible");
                             }
                         </code>
                     </pre>
@@ -76,8 +135,8 @@
                 <div class="col-md-4">
                     <h5 class="mt-2">Hello World</h5>
                     <p class="mt-4">
-                        The code is structured in one function. <br><br>
-                        This program takes an input word or phrase and checks whether it qualifies as a palindrome.
+                        The code is structured in three functions: userInputText(), palindromeCheck(), and displayResults(). <br><br>
+                        This program takes an input word or phrase and determines whether it qualifies as a palindrome.
                     </p>
                 </div>
             </div>

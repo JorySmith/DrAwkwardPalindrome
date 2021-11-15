@@ -50,8 +50,6 @@ function palindromeCheck(userInput) {
     return returnObject;
 }
 
-
-
 // Display function
 // If word is a palindrome, display success message, otherwise, display the fail message
 function displayResults(returnObject) {
